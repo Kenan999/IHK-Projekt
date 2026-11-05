@@ -14,6 +14,14 @@ The frontend is a single static HTML file, `public/index.html`, with embedded CS
 
 For local HTTP development, install Git and Python 3. The commands below have been checked with Python 3.12.3. No additional Python packages are required. No application backend has been implemented; the static production web server is not an application backend. Private operations and ticket-system files are separate from this team repository.
 
+## Project structure
+
+- `public/`: the existing static frontend.
+- `backend/`: a documented placeholder for the future application backend; no runtime or dependencies yet.
+- `README.md`: shared setup and collaboration instructions.
+
+Frontend and backend belong in this repository together. Use working branches for individual changes, then review and merge into `main`. Backend files are not started or deployed by the current static publication process.
+
 ## Clone the repository
 
 The repository is public: reading and cloning do not require a GitHub account. Pushing changes still requires an authorized GitHub account and configured Git authentication. Never put credentials in files or clone URLs.
