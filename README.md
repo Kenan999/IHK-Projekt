@@ -10,13 +10,13 @@ The website currently displays only the project title. Project content will be a
 
 ## Requirements and technical scope
 
-The frontend is a single static HTML file, `public/index.html`, with embedded CSS. It requires no Node.js, npm, framework, package installation, environment variables, database or build step. You can open the file directly in a browser.
+The frontend is a single static HTML file, `frontend/index.html`, with embedded CSS. It requires no Node.js, npm, framework, package installation, environment variables, database or build step. You can open the file directly in a browser.
 
 For local HTTP development, install Git and Python 3. The commands below have been checked with Python 3.12.3. No additional Python packages are required. No application backend has been implemented; the static production web server is not an application backend. Private operations and ticket-system files are separate from this team repository.
 
 ## Project structure
 
-- `public/`: the existing static frontend.
+- `frontend/`: the existing static frontend.
 - `backend/`: a documented placeholder for the future application backend; no runtime or dependencies yet.
 - `README.md`: shared setup and collaboration instructions.
 
@@ -37,10 +37,10 @@ From the repository directory:
 
 ```sh
 python3 --version
-python3 -m http.server 8000 --bind 127.0.0.1 --directory public
+python3 -m http.server 8000 --bind 127.0.0.1 --directory frontend
 ```
 
-Open `http://127.0.0.1:8000/` in your browser. Stop the server with `Ctrl+C`. If port 8000 is busy, use another available port and update the browser address. Serve only `public/`; do not expose the repository root as a web directory.
+Open `http://127.0.0.1:8000/` in your browser. Stop the server with `Ctrl+C`. If port 8000 is busy, use another available port and update the browser address. Serve only `frontend/`; do not expose the repository root as a web directory.
 
 ## Check changes
 
@@ -62,7 +62,7 @@ The intended workflow is **branch → push → pull request → tests and review
 4. Publish your working branch with `git push -u origin team/topic` and open a pull request targeting `main`.
 5. Complete the available checks and team review before merging.
 
-`Frontend` and `Backend` are development branches in the same repository, not separate applications or a substitute for a future directory structure. `Frontend` contains the current static page under `public/`. `Backend` is a starting point for future application work; its architecture, dependencies and interfaces have not yet been agreed or implemented.
+`Frontend` and `Backend` are development branches in the same repository, not separate applications or a substitute for a future directory structure. `Frontend` contains the current static page under `frontend/`. `Backend` is a starting point for future application work; its architecture, dependencies and interfaces have not yet been agreed or implemented.
 
 A push to a development branch does not update the live website. Merging into `main` authorizes automatic publication of a valid static website. Review is currently a team workflow agreement, not a claim that GitHub branch protection enforces it.
 
@@ -72,9 +72,9 @@ A separate development clone is available. A separately accessible development p
 
 A server-side timer checks GitHub `main` approximately every 30 seconds. Fetching and validation take additional time; immediate or precisely timed publication is not guaranteed. No GitHub Actions workflow is required for this mechanism.
 
-Only `public/` from the fetched commit is published. The deployment process does not execute repository code, install packages, run builds or deploy an application backend. Feature branches are not published.
+Only `frontend/` from the fetched commit is published. The deployment process does not execute repository code, install packages, run builds or deploy an application backend. Feature branches are not published.
 
-A release must contain a complete static `public/index.html`. Supported file extensions are `.html`, `.css`, `.js`, `.json`, `.svg`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.ico`, `.woff`, `.woff2`, `.ttf`, `.txt` and `.webmanifest`. Hidden files, symbolic links and executable files are rejected. Limits are 2,000 files, 50 MiB in total and 2 MiB for the HTML entry point. The entry point must contain an HTML document. These checks are not a complete HTML, security or functionality test suite.
+A release must contain a complete static `frontend/index.html`. Supported file extensions are `.html`, `.css`, `.js`, `.json`, `.svg`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, `.ico`, `.woff`, `.woff2`, `.ttf`, `.txt` and `.webmanifest`. Hidden files, symbolic links and executable files are rejected. Limits are 2,000 files, 50 MiB in total and 2 MiB for the HTML entry point. The entry point must contain an HTML document. These checks are not a complete HTML, security or functionality test suite.
 
 The clean deployment cache and live releases are separate from development clones and private data. Fetch failures or an invalid or missing entry point leave the current website unchanged. A validated release is activated atomically, then an HTTP check compares the served homepage with the commit content. A failed HTTP check restores the previous release. Concurrent deployment attempts are serialized.
 
@@ -84,7 +84,7 @@ Controlled server-side tests have covered valid releases, ignored feature branch
 
 ## Development and live files
 
-Develop only in your own development clone. In the publication project, `public/` points to the active validated release. Deployment management, its fetch cache and retained releases are all kept inside that publication project in a nonpublic operations area. Website changes reach live through GitHub `main` and the poller, never by directly editing live files. Keeping deployment files within the publication project does not change the polling interval, validation or rollback behavior.
+Develop only in your own development clone. In the publication project, `frontend/` points to the active validated release. Deployment management, its fetch cache and retained releases are all kept inside that publication project in a nonpublic operations area. Website changes reach live through GitHub `main` and the poller, never by directly editing live files. Keeping deployment files within the publication project does not change the polling interval, validation or rollback behavior.
 
 ## Keep this README current
 
